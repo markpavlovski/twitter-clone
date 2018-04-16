@@ -1,12 +1,14 @@
 $blue: #48a1ec;
+$light-blue: #64b2ee;
 $grey: #e7ecf0;
 $light-grey: #f6f8fa;
 
-
 * {
-  margin: 0px;
-  padding: 0px;
-  font-size: 0px;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  box-sizing: border-box;
+  border:none;
 }
 
 body {
@@ -14,7 +16,10 @@ body {
 }
 
 header {
-  background-color: #000;
+  background: url("https://pbs.twimg.com/profile_banners/890344751375028225/1507306509/1500x500");
+  background-size: 100vw auto;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100%;
   height: 311px;
   position: sticky;
@@ -26,10 +31,46 @@ nav.top-nav {
   width: 100%;
   height: 51px;
   position: sticky;
-  top: 0px;
+  top: 0;
   z-index: 999;
-}
 
+  div.content {
+    height: 51px;
+    line-height: 51px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0,0,0,0) !important;
+
+    img.top-menu {
+      height: 46px;
+    }
+
+    img.user-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 35px;
+      cursor: pointer;
+    }
+
+    button.post {
+      width: 90px;
+      height: 35px;
+      background-color: $light-blue;
+      border-radius: 20px;
+      font-size: 16px;
+      color: white;
+      user-select: none;
+      border:none;
+      cursor: pointer;
+      outline: inherit;
+
+      &:hover {
+        background-color: $blue;
+      }
+    }
+  }
+}
 
 nav.middle-nav {
   background-color: #fff;
@@ -39,33 +80,57 @@ nav.middle-nav {
   top: 74px;
 }
 
-div.carousel {
-  background-color: rgba(0,0,0,.2);
+main {
   width: 100%;
-  height: 38vh;
+  height: 100vh;
+
+  div.card{
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    cursor:pointer;
+
+    &:hover{
+      background-color: $light-grey;
+    }
+  }
+
+  div.header-card{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    border-bottom: 1px solid $grey;
+    margin-top: 14px;
+  }
+
 }
 
 section.blocks {
   background-color: rgba(0,0,0,.1);
   width: 100%;
   height: 38vh;
-  margin: 5px 0px;
+  margin: 5px 0;
 }
 
-footer.footer-top {
-  background-color: rgba(0,0,0,.8);
-  width: 100%;
-  height: 30vh;
-}
-footer.footer-bottom {
-  background-color: rgba(0,0,0,.9);
-  width: 100%;
-  height: 5vh;
-}
 
 .content {
-  width: 1000px;
+  width: 988px;
   height: 100%;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(0,0,0,0.0);
   margin: auto;
+
+  .content-left {
+    display: inline-block;
+    width: 322px;
+    background-color: rgba(0,0,0,0);
+    margin-right: 12px;
+    height: 100vh;
+  }
+
+  .content-right {
+    display: inline-block;
+    width: 654px;
+    background-color: rgba(0,0,0,0);
+    height: 100vh;
+  }
 }
