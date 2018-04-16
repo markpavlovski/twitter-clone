@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 $blue: #48a1ec;
 $light-blue: #64b2ee;
 $grey: #e7ecf0;
 $light-grey: #f6f8fa;
+$text-grey: #657786;
 
 * {
   margin: 0;
   padding: 0;
   font-size: 0;
   box-sizing: border-box;
-  border:none;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -61,7 +64,7 @@ nav.top-nav {
       font-size: 16px;
       color: white;
       user-select: none;
-      border:none;
+      border: none;
       cursor: pointer;
       outline: inherit;
 
@@ -82,36 +85,88 @@ nav.middle-nav {
 
 main {
   width: 100%;
-  height: 100vh;
 
-  div.card{
+  div.card {
     width: 100%;
-    height: 200px;
+    min-height: 150px;
     background-color: white;
-    cursor:pointer;
+    cursor: pointer;
+    padding-top: 10px;
 
-    &:hover{
+    div.card-left {
+      display: inline-block;
+      vertical-align: top;
+      width: 80px;
+
+      img.user-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 100%;
+        margin: 0 16px;
+      }
+    }
+
+    div.card-right {
+      display: inline-block;
+      vertical-align: top;
+      width: calc(100% - 110px);
+
+      h1.user-name {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      h2.user-handle {
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 14px;
+        color: $text-grey;
+        font-weight: 400;
+      }
+
+      h2.post-date {
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 14px;
+        color: $text-grey;
+        font-weight: 400;
+      }
+
+      p.tweet-content {
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        margin-top: 10px;
+        line-height: 22px;
+      }
+
+      p.tweet-placeholder-actions {
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        margin: 20px -25px;
+        color: $text-grey;
+
+        svg {
+          margin-left: 25px;
+        }
+      }
+    }
+
+    &:hover {
       background-color: $light-grey;
     }
   }
 
-  div.header-card{
+  div.header-card {
     width: 100%;
     height: 50px;
     background-color: white;
     border-bottom: 1px solid $grey;
     margin-top: 14px;
   }
-
 }
-
-section.blocks {
-  background-color: rgba(0,0,0,.1);
-  width: 100%;
-  height: 38vh;
-  margin: 5px 0;
-}
-
 
 .content {
   width: 988px;
@@ -124,13 +179,11 @@ section.blocks {
     width: 322px;
     background-color: rgba(0,0,0,0);
     margin-right: 12px;
-    height: 100vh;
   }
 
   .content-right {
     display: inline-block;
     width: 654px;
     background-color: rgba(0,0,0,0);
-    height: 100vh;
   }
 }
