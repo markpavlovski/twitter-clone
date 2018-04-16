@@ -16,11 +16,12 @@ $text-grey: #657786;
 
 body {
   background-color: $grey;
+  overflow: hidden;
 }
 
 header {
   background: url("https://pbs.twimg.com/profile_banners/890344751375028225/1507306509/1500x500");
-  background-size: 100vw auto;
+  background-size: 1600px auto;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
@@ -35,7 +36,7 @@ nav.top-nav {
   height: 51px;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 100;
 
   div.content {
     height: 51px;
@@ -83,7 +84,7 @@ nav.middle-nav {
   top: 74px;
 }
 
-main {
+main.main-content {
   width: 100%;
 
   div.card {
@@ -167,6 +168,29 @@ main {
     margin-top: 14px;
   }
 }
+
+
+main.post-interface {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 200;
+
+
+  div.post-card {
+    margin: 25px auto;
+    height: 210px;
+    width: 610px;
+    background-color: $light-blue;
+    border-radius: 6px;
+  }
+
+}
+
+
 
 .content {
   width: 988px;
