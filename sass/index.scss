@@ -19,7 +19,7 @@ $post-card-inactive-blue: #c3e1f9;
 
 body {
   background-color: $grey;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 header {
@@ -162,6 +162,7 @@ main.post-interface {
   height: 100vh;
   width: 100vw;
   background-color: rgba(0,0,0,0.7);
+  opacity: 1;
   z-index: 200;
 
   div.post-card {
@@ -275,4 +276,20 @@ button.post {
   &:hover {
     background-color: $blue;
   }
+}
+
+
+
+// helper classes
+
+.d-none {
+  z-index:  !important;
+}
+
+.d-show {
+  opacity: 1 !important;
+}
+
+.d-hide {
+  opacity: 0 !important;
 }
