@@ -42,19 +42,6 @@ nav.top-nav {
       height: 35px;
       border-radius: 35px;
       cursor: pointer; }
-    nav.top-nav div.content button.post {
-      width: 90px;
-      height: 35px;
-      background-color: #64b2ee;
-      border-radius: 20px;
-      font-size: 16px;
-      color: white;
-      user-select: none;
-      border: none;
-      cursor: pointer;
-      outline: inherit; }
-      nav.top-nav div.content button.post:hover {
-        background-color: #48a1ec; }
 
 nav.middle-nav {
   background-color: #fff;
@@ -141,11 +128,53 @@ main.post-interface {
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
       border-bottom: 1px solid #c3e1f9; }
+      main.post-interface div.post-card div.post-card-header h1.post-card-header-text {
+        display: block;
+        margin: auto;
+        text-align: center;
+        line-height: 49px;
+        font-size: 17px;
+        font-weight: 700; }
+      main.post-interface div.post-card div.post-card-header svg.post-card-header-x {
+        display: block;
+        font-size: 14px;
+        font-weight: 400;
+        margin-left: 580px;
+        margin-top: -30px; }
     main.post-interface div.post-card div.post-card-body {
       height: calc(100% - 51px);
       background-color: #ecf5fd;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px; }
+    main.post-interface div.post-card img.user-icon {
+      display: inline-block;
+      vertical-align: top;
+      width: 32px;
+      height: 32px;
+      margin: 12px;
+      border-radius: 100%; }
+    main.post-interface div.post-card textarea.post-text-input {
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 13px;
+      width: 540px;
+      height: 86px;
+      border-radius: 10px;
+      border: 2px solid #aed8f6;
+      padding: 6px;
+      outline: inherit;
+      font-size: 14px;
+      color: black;
+      text-align: top;
+      line-height: 22px;
+      resize: none; }
+      main.post-interface div.post-card textarea.post-text-input::placeholder {
+        opacity: 0.4; }
+    main.post-interface div.post-card button.post {
+      position: relative;
+      float: right;
+      margin: 10px 15px;
+      background-color: #c3e1f9; }
 
 .content {
   width: 988px;
@@ -161,3 +190,17 @@ main.post-interface {
     display: inline-block;
     width: 654px;
     background-color: transparent; }
+
+button.post {
+  width: 90px;
+  height: 35px;
+  background-color: #64b2ee;
+  border-radius: 20px;
+  font-size: 16px;
+  color: white;
+  user-select: none;
+  border: none;
+  cursor: pointer;
+  outline: inherit; }
+  button.post:hover {
+    background-color: #48a1ec; }

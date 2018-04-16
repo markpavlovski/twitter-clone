@@ -59,23 +59,6 @@ nav.top-nav {
       border-radius: 35px;
       cursor: pointer;
     }
-
-    button.post {
-      width: 90px;
-      height: 35px;
-      background-color: $light-blue;
-      border-radius: 20px;
-      font-size: 16px;
-      color: white;
-      user-select: none;
-      border: none;
-      cursor: pointer;
-      outline: inherit;
-
-      &:hover {
-        background-color: $blue;
-      }
-    }
   }
 }
 
@@ -192,6 +175,24 @@ main.post-interface {
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
       border-bottom: 1px solid $post-card-inactive-blue;
+
+      h1.post-card-header-text {
+        display: block;
+        margin: auto;
+        text-align: center;
+        line-height: 49px;
+        font-size: 17px;
+        font-weight: 700;
+      }
+
+      svg.post-card-header-x {
+        display: block;
+        // position: absolute;
+        font-size: 14px;
+        font-weight: 400;
+        margin-left: 580px;
+        margin-top: -30px;
+      }
     }
 
     div.post-card-body {
@@ -199,6 +200,42 @@ main.post-interface {
       background-color: $post-card-bg-blue;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
+    }
+
+    img.user-icon {
+      display: inline-block;
+      vertical-align: top;
+      width: 32px;
+      height: 32px;
+      margin: 12px;
+      border-radius: 100%;
+    }
+
+    textarea.post-text-input {
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 13px;
+      width: 540px;
+      height: 86px;
+      border-radius: 10px;
+      border: 2px solid $post-card-border-blue;
+      padding: 6px;
+      outline: inherit;
+      font-size: 14px;
+      color: black;
+      text-align: top;
+      line-height: 22px;
+      resize: none;
+      &::placeholder{
+        opacity: 0.4;
+      }
+    }
+
+    button.post {
+      position: relative;
+      float: right;
+      margin: 10px 15px;
+      background-color: $post-card-inactive-blue;
     }
   }
 }
@@ -220,5 +257,22 @@ main.post-interface {
     display: inline-block;
     width: 654px;
     background-color: rgba(0,0,0,0);
+  }
+}
+
+button.post {
+  width: 90px;
+  height: 35px;
+  background-color: $light-blue;
+  border-radius: 20px;
+  font-size: 16px;
+  color: white;
+  user-select: none;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+
+  &:hover {
+    background-color: $blue;
   }
 }
