@@ -125,18 +125,27 @@ main.main-content {
 
 main.post-interface {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 200; }
   main.post-interface div.post-card {
-    margin: 25px auto;
+    margin: 40px auto;
     height: 210px;
-    width: 610px;
-    background-color: #64b2ee;
-    border-radius: 6px; }
+    width: 610px; }
+    main.post-interface div.post-card div.post-card-header {
+      height: 49px;
+      background-color: #fff;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      border-bottom: 1px solid #c3e1f9; }
+    main.post-interface div.post-card div.post-card-body {
+      height: calc(100% - 51px);
+      background-color: #ecf5fd;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px; }
 
 .content {
   width: 988px;
