@@ -62,12 +62,22 @@ class FrontEndController {
     const clickMainScreenButton = {
       action: 'click',
       el: this.topNav.querySelector('button'),
-      cb: this.showPostScreen.bind(this)
+      cb: this.newPost.bind(this)
     }
+    // const clickMainScreenButton = {
+    //   action: 'click',
+    //   el: this.topNav.querySelector('button'),
+    //   cb: this.showPostScreen.bind(this)
+    // }
     const clickPostScreenButton = {
       action: 'click',
       el: this.mainPostScreen.querySelector('button'),
       cb: this.submitPost.bind(this)
+    }
+    const clickPostScreenEdit = {
+      action: 'click',
+      el: this.mainPostScreen.querySelector('button'),
+      cb: this.editSubmitPost.bind(this)
     }
     const clickPostScreenEsc = {
       action: 'click',
@@ -80,16 +90,26 @@ class FrontEndController {
       cb: this.editPost.bind(this)
     }
 
+    this.listenerObjs = {keyPressEvents, clickMainScreenButton, clickPostScreenButton, clickPostScreenEdit, clickPostScreenEsc}
+
     this.addListeners(
       keyPressEvents,
       clickMainScreenButton,
-      clickPostScreenButton,
       clickPostScreenEsc,
       clickMainScreenCard
     )
 
     this.renderFeed()
   }
+
+
+
+  newPost(){
+    this.showPostScreen(this.listenerObjs.clickPostScreenButton)
+    const heading = this.mainPostScreen.querySelector('.post-card-header-text')
+    heading.innerText = 'Create new Post'
+  }
+
 
   editPost(event){
     const card = event.target.closest('.card')
@@ -98,11 +118,16 @@ class FrontEndController {
       const id = card.getAttribute('postid')
       const post = this.posts.find(obj => obj.id === id)
       const textarea = this.mainPostScreen.querySelector('textarea')
-      console.log(post);
+      const heading = this.mainPostScreen.querySelector('.post-card-header-text')
+      console.log(heading);
+      this.showPostScreen(this.listenerObjs.clickPostScreenEdit)
       textarea.value = post.content
-      this.showPostScreen()
+      heading.innerText = 'Edit Post'
     }
+  }
 
+  editSubmitPost(){
+    console.log("hi");
   }
 
 
@@ -172,7 +197,7 @@ class FrontEndController {
 
   }
 
-  showPostScreen(){
+  showPostScreen(listener){
     if (this.mainPostScreen.classList.contains('d-hide')){
       const textarea = this.mainPostScreen.querySelector('textarea')
       textarea.value = ''
@@ -180,6 +205,7 @@ class FrontEndController {
       this.toggleClass(this.mainPostScreen, 'd-back')
       this.toggleClass(document.body, 'd-overflow')
       setTimeout(() => this.toggleClass(this.mainPostScreen, 'd-hide'), 100)
+      this.addListeners(listener)
     }
   }
 
@@ -188,6 +214,7 @@ class FrontEndController {
       this.toggleClass(this.mainPostScreen,'d-hide')
       this.toggleClass(document.body,'d-overflow')
       setTimeout(()=>this.toggleClass(this.mainPostScreen,'d-back'),100)
+      this.removeListeners(this.listenerObjs.clickPostScreenButton, this.listenerObjs.clickPostScreenEdit)
     }
   }
 
@@ -198,6 +225,12 @@ class FrontEndController {
   addListeners(...args){
     if (args) args.map(listener=>{
       listener["el"].addEventListener(listener.action, listener.cb)
+    })
+  }
+
+  removeListeners(...args){
+    if (args) args.map(listener=>{
+      listener["el"].removeEventListener(listener.action, listener.cb)
     })
   }
 
