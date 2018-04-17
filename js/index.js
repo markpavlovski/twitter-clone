@@ -126,22 +126,37 @@ class FrontEndController {
     }
   }
 
-  editSubmitPost(){
+
+  stagePostData(){
     console.log("hi");
-  }
-
-
-  submitPost(){
     const textarea = this.mainPostScreen.querySelector('textarea')
     const name = 'Mark Pavlovski'
     const handle = '@mrkpvlvski'
     const timestamp = new Date()
     const content = textarea.value
-    const tags = content.split(' ').filter(word =>{
-      console.log(word);
-      return word[0]==='#'
-    })
-    const postData = {name, handle, timestamp, content, tags}
+    const tags = content.split(' ').filter(word =>word[0]==='#')
+    return {name, handle, timestamp, content, tags}
+  }
+
+  editSubmitPost(){
+    // console.log("hi");
+    // const textarea = this.mainPostScreen.querySelector('textarea')
+    // const name = 'Mark Pavlovski'
+    // const handle = '@mrkpvlvski'
+    // const timestamp = new Date()
+    // const content = textarea.value
+    // const tags = content.split(' ').filter(word =>{
+    //   console.log(word);
+    //   return word[0]==='#'
+    // })
+    const postData = this.stagePostData()
+    console.log(postData);
+    this.hidePostScreen()
+  }
+
+
+  submitPost(){
+    const postData = this.stagePostData()
     console.log(postData)
     console.log('post submitted')
     // axios post call, with this.renderFeed cb
