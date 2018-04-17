@@ -1,16 +1,23 @@
 class FrontEndController {
-  constructor(mainContent, mainPost){
+  constructor(topNav, mainContent, mainPost){
     this.mainContentScreen = mainContent
     this.mainPostScreen = mainPost
-    console.log(this.mainContentScreen, this.mainPostScreen)
+    this.topNav = topNav
+    console.log(this.topNav,this.mainContentScreen, this.mainPostScreen)
+    console.log(this.topNav.querySelector('button'))
 
-    const escKey = {
+    const hidePostSceenEvent = {
       action: 'keydown',
       el: document,
       cb: this.keyPressHandler.bind(this)
     }
+    const clickMainScreenButton = {
+      action: 'click',
+      el: this.topNav.querySelector('button'),
+      cb: this.showPostScreen.bind(this)
+    }
 
-    this.addListeners(escKey)
+    this.addListeners(hidePostSceenEvent,clickMainScreenButton)
   }
 
   keyPressHandler(event){
@@ -19,10 +26,11 @@ class FrontEndController {
   }
 
   showPostScreen(){
+    console.log('asd');
     if (this.mainPostScreen.classList.contains('d-hide')){
       this.toggleClass(this.mainPostScreen, 'd-back')
       this.toggleClass(document.body, 'd-overflow')
-      setTimeout(() => this.toggleClass(this.mainPostScreen, 'd-hide'), 200)
+      setTimeout(() => this.toggleClass(this.mainPostScreen, 'd-hide'), 100)
     }
   }
 
@@ -30,7 +38,7 @@ class FrontEndController {
     if (document.body.classList.contains('d-overflow')){
       this.toggleClass(this.mainPostScreen,'d-hide')
       this.toggleClass(document.body,'d-overflow')
-      setTimeout(()=>this.toggleClass(this.mainPostScreen,'d-none'),200)
+      setTimeout(()=>this.toggleClass(this.mainPostScreen,'d-back'),100)
     }
   }
 
@@ -40,6 +48,7 @@ class FrontEndController {
 
   addListeners(...args){
     if (args) args.map(listener=>{
+      console.log(listener);
       listener["el"].addEventListener(listener.action, listener.cb)
     })
   }
@@ -53,6 +62,7 @@ class FrontEndController {
 
 }
 
+const topNav = document.querySelector('.top-nav')
 const mainContent = document.querySelector('main.main-content')
 const mainPostInterface = document.querySelector('main.post-interface')
-const controller = new FrontEndController(mainContent,mainPostInterface)
+const controller = new FrontEndController(topNav,mainContent,mainPostInterface)

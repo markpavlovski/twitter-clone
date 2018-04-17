@@ -164,7 +164,7 @@ main.post-interface {
   background-color: rgba(0,0,0,0.7);
   opacity: 1;
   z-index: 200;
-  transition: opacity .2s ease;
+  transition: opacity .1s linear;
 
   div.post-card {
     margin: 40px auto;
@@ -284,7 +284,7 @@ button.post {
 // helper classes
 
 .d-back {
-  z-index:  !important;
+  z-index: -1 !important;
 }
 
 .d-show {
