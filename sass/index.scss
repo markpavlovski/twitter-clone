@@ -164,6 +164,7 @@ main.post-interface {
   background-color: rgba(0,0,0,0.7);
   opacity: 1;
   z-index: 200;
+  transition: opacity .2s ease;
 
   div.post-card {
     margin: 40px auto;
@@ -282,7 +283,7 @@ button.post {
 
 // helper classes
 
-.d-none {
+.d-back {
   z-index:  !important;
 }
 
@@ -292,4 +293,8 @@ button.post {
 
 .d-hide {
   opacity: 0 !important;
+}
+
+.d-overflow {
+  overflow: hidden !important;
 }
