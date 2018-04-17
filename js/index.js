@@ -2,31 +2,36 @@ class FrontEndController {
   constructor(mainContent, mainPost){
     this.mainContentScreen = mainContent
     this.mainPostScreen = mainPost
-    console.log(this.mainContentScreen, this.mainPostScreen);
+    console.log(this.mainContentScreen, this.mainPostScreen)
 
     const escKey = {
       action: 'keydown',
       el: document,
-      cb: this.keyPressHandler
+      cb: this.keyPressHandler.bind(this)
     }
 
     this.addListeners(escKey)
   }
 
   keyPressHandler(event){
-    if (event.key == "Escape") console.log('nice!');
+    if (event.key == "Escape") this.hidePostScreen()
+    if (event.key == "z") this.showPostScreen()
   }
 
   showPostScreen(){
-    this.toggleClass(this.mainPostScreen,'d-back')
-    this.toggleClass(document.body,'d-overflow')
-    setTimeout(()=>this.toggleClass(this.mainPostScreen,'d-hide'),200)
+    if (this.mainPostScreen.classList.contains('d-hide')){
+      this.toggleClass(this.mainPostScreen, 'd-back')
+      this.toggleClass(document.body, 'd-overflow')
+      setTimeout(() => this.toggleClass(this.mainPostScreen, 'd-hide'), 200)
+    }
   }
 
   hidePostScreen(){
-    this.toggleClass(this.mainPostScreen,'d-hide')
-    this.toggleClass(document.body,'d-overflow')
-    setTimeout(()=>this.toggleClass(this.mainPostScreen,'d-none'),200)
+    if (document.body.classList.contains('d-overflow')){
+      this.toggleClass(this.mainPostScreen,'d-hide')
+      this.toggleClass(document.body,'d-overflow')
+      setTimeout(()=>this.toggleClass(this.mainPostScreen,'d-none'),200)
+    }
   }
 
   toggleClass(element, ...args){
@@ -34,11 +39,7 @@ class FrontEndController {
   }
 
   addListeners(...args){
-    console.log(args[0]);
     if (args) args.map(listener=>{
-      console.log(listener["el"])
-      console.log(listener.action)
-      console.log(listener.cb);
       listener["el"].addEventListener(listener.action, listener.cb)
     })
   }
