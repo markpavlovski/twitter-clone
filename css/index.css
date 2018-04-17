@@ -206,6 +206,16 @@ button.post {
   button.post:hover {
     background-color: #48a1ec; }
 
+button.post.delete {
+  width: 25px;
+  background-color: transparent !important;
+  font-size: 14px;
+  color: #ef5350;
+  user-select: none;
+  border: none;
+  cursor: pointer;
+  outline: inherit; }
+
 .d-back {
   z-index: -1 !important; }
 

@@ -108,6 +108,9 @@ class FrontEndController {
     this.showPostScreen(this.listenerObjs.clickPostScreenButton)
     const heading = this.mainPostScreen.querySelector('.post-card-header-text')
     heading.innerText = 'Create new Post'
+    const del = this.mainPostScreen.querySelector('button.post.delete')
+    if (!del.classList.contains('d-hide')) this.toggleClass(del,'d-hide', 'd-back')
+
   }
 
 
@@ -119,10 +122,12 @@ class FrontEndController {
       const post = this.posts.find(obj => obj.id === id)
       const textarea = this.mainPostScreen.querySelector('textarea')
       const heading = this.mainPostScreen.querySelector('.post-card-header-text')
+      const del = this.mainPostScreen.querySelector('button.post.delete')
       console.log(heading);
       this.showPostScreen(this.listenerObjs.clickPostScreenEdit)
       textarea.value = post.content
       heading.innerText = 'Edit Post'
+      if (del.classList.contains('d-hide')) this.toggleClass(del,'d-hide', 'd-back')
     }
   }
 
@@ -157,6 +162,7 @@ class FrontEndController {
 
   submitPost(){
     const postData = this.stagePostData()
+
     console.log(postData)
     console.log('post submitted')
     // axios post call, with this.renderFeed cb

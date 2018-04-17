@@ -279,6 +279,17 @@ button.post {
   }
 }
 
+button.post.delete {
+  width: 25px;
+  background-color: rgba(0,0,0,0) !important;
+  font-size: 14px;
+  color: #ef5350;
+  user-select: none;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+}
+
 
 
 // helper classes
