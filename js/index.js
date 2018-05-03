@@ -1,17 +1,18 @@
 class Post {
-  constructor({id, name, handle, timestamp, content, tags}){
-    this._element = this.createDOMElement(id, name, handle, timestamp, content, tags)
+  constructor({id, name, handle, timestamp, messageBody, tags}){
+    this._element = this.createDOMElement(id, name, handle, timestamp, messageBody, tags)
     this.id = id
     this.name = name
     this.handle = handle
     this.timestamp = timestamp
-    this.content = content
+    this.messageBody = messageBody
     this.tags = tags
   }
 
-  createDOMElement(id, name, handle, timestamp, content, tags){
+  createDOMElement(id, name, handle, timestamp, messageBody, tags){
 
-    const date = `${timestamp}`.split(' ').filter((el,idx)=> idx === 1 || idx === 2).join(' ')
+    // const date = `${timestamp}`.split(' ').filter((el,idx)=> idx === 1 || idx === 2).join(' ')
+    const date = `${new Date(timestamp)}`.split(' ').filter((el,idx)=> idx === 1 || idx === 2).join(' ')
     const card = document.createElement('div')
     card.setAttribute('postId', id)
     card.classList.add('card')
@@ -26,7 +27,7 @@ class Post {
         <h2 class='post-date'>${date}</h2>
 
         <p class='tweet-content'>
-          ${content}
+          ${messageBody}
         </p>
         <p class='tweet-placeholder-actions'>
           <i class="far fa-comment"></i> 10
@@ -64,15 +65,15 @@ class FrontEndController {
       el: this.topNav.querySelector('button'),
       cb: this.newPost.bind(this)
     }
-    // const clickMainScreenButton = {
-    //   action: 'click',
-    //   el: this.topNav.querySelector('button'),
-    //   cb: this.showPostScreen.bind(this)
-    // }
     const clickPostScreenButton = {
       action: 'click',
-      el: this.mainPostScreen.querySelector('button'),
+      el: this.mainPostScreen.querySelector('button.post:not(.delete)'),
       cb: this.submitPost.bind(this)
+    }
+    const clickPostScreenDelete = {
+      action: 'click',
+      el: this.mainPostScreen.querySelector('button.delete'),
+      cb: this.deletePost.bind(this)
     }
     const clickPostScreenEdit = {
       action: 'click',
@@ -96,12 +97,12 @@ class FrontEndController {
       keyPressEvents,
       clickMainScreenButton,
       clickPostScreenEsc,
-      clickMainScreenCard
+      clickMainScreenCard,
+      clickPostScreenDelete
     )
 
     this.renderFeed()
   }
-
 
 
   newPost(){
@@ -144,25 +145,23 @@ class FrontEndController {
   }
 
   editSubmitPost(){
-    // console.log("hi");
-    // const textarea = this.mainPostScreen.querySelector('textarea')
-    // const name = 'Mark Pavlovski'
-    // const handle = '@mrkpvlvski'
-    // const timestamp = new Date()
-    // const content = textarea.value
-    // const tags = content.split(' ').filter(word =>{
-    //   console.log(word);
-    //   return word[0]==='#'
-    // })
     const postData = this.stagePostData()
     console.log(postData);
+    // axios post call, with this.renderFeed cb
+    this.hidePostScreen()
+  }
+
+
+  deletePost(){
+    const postData = this.stagePostData()
+    console.log('deleted post')
+    // axios post call, with this.renderFeed cb
     this.hidePostScreen()
   }
 
 
   submitPost(){
     const postData = this.stagePostData()
-
     console.log(postData)
     console.log('post submitted')
     // axios post call, with this.renderFeed cb
@@ -170,35 +169,24 @@ class FrontEndController {
   }
 
   renderFeed(){
-    // data from server
-    const id = 'XF2RF7D'
-    const name = 'Mark Pavlovski'
-    const handle = '@mrkpvlvski'
-    const timestamp = new Date
-    const content = 'text'
-    const tags = ['a','b','c']
-    const data = [
-      {id, name, handle, timestamp, content, tags},
-      {id, name, handle, timestamp, content, tags},
-      {id, name, handle, timestamp, content, tags},
-      {id, name, handle, timestamp, content, tags},
-      {id, name, handle, timestamp, content, tags},
-      {id, name, handle, timestamp, content, tags},
-      {id, name, handle, timestamp, content, tags}
-    ]
-
-    const feedContainer = this.mainContentScreen.querySelector('.content-right')
-
-    while (feedContainer.lastElementChild.classList.contains('card')) {
-      feedContainer.removeChild(feedContainer.lastElementChild)
-    }
-    while (this.posts.length) this.posts.pop()
-
-    data.map(post=>{
-      const newPost = new Post(post)
-      this.posts.push(newPost)
-      feedContainer.appendChild(newPost.element)
+    axios.get('http://localhost:3000/messages')
+    .then(response => {
+      const data = response.data.data.reverse()
+      const feedContainer = this.mainContentScreen.querySelector('.content-right')
+      while (feedContainer.lastElementChild.classList.contains('card')) {
+        feedContainer.removeChild(feedContainer.lastElementChild)
+      }
+      while (this.posts.length) this.posts.pop()
+      data.map(post=>{
+        const newPost = new Post(post)
+        this.posts.push(newPost)
+        feedContainer.appendChild(newPost.element)
+      })
     })
+    .catch(function (error) {
+      console.log(error);
+    });
+
 
 
 
